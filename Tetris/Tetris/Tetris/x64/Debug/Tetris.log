@@ -1,0 +1,14 @@
+﻿  block.cpp
+C:\Users\filip\OneDrive\Desktop\1\Programowanie_zaawansowane\Tetris\Tetris\block.cpp(50,32): warning C4267: "=": konwersja z "size_t" do "int", możliwa utrata danych
+  blocks.cpp
+  colors.cpp
+  game.cpp
+  grid.cpp
+  main.cpp
+C:\Users\filip\OneDrive\Desktop\1\Programowanie_zaawansowane\Tetris\Tetris\main.cpp(43,43): warning C4305: "argument": obcięcie z "double" do "float"
+C:\Users\filip\OneDrive\Desktop\1\Programowanie_zaawansowane\Tetris\Tetris\main.cpp(50,45): warning C4305: "argument": obcięcie z "double" do "float"
+  position.cpp
+  Generowanie kodu...
+  Tetris.vcxproj -> C:\Users\filip\OneDrive\Desktop\1\Programowanie_zaawansowane\Tetris\Tetris\x64\Debug\Tetris.exe
+  'pwsh.exe' is not recognized as an internal or external command,
+  operable program or batch file.
