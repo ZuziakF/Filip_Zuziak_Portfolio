@@ -1,0 +1,16 @@
+﻿  main.cpp
+C:\Users\filip\OneDrive\Desktop\1\Programowanie_zaawansowane\Pong\main.cpp(15,20): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\filip\OneDrive\Desktop\1\Programowanie_zaawansowane\Pong\main.cpp(15,17): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\filip\OneDrive\Desktop\1\Programowanie_zaawansowane\Pong\main.cpp(15,14): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\filip\OneDrive\Desktop\1\Programowanie_zaawansowane\Pong\main.cpp(38,24): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\filip\OneDrive\Desktop\1\Programowanie_zaawansowane\Pong\main.cpp(39,25): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\filip\OneDrive\Desktop\1\Programowanie_zaawansowane\Pong\main.cpp(66,26): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\filip\OneDrive\Desktop\1\Programowanie_zaawansowane\Pong\main.cpp(66,20): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\filip\OneDrive\Desktop\1\Programowanie_zaawansowane\Pong\main.cpp(66,18): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\filip\OneDrive\Desktop\1\Programowanie_zaawansowane\Pong\main.cpp(66,16): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\filip\OneDrive\Desktop\1\Programowanie_zaawansowane\Pong\main.cpp(135,17): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\filip\OneDrive\Desktop\1\Programowanie_zaawansowane\Pong\main.cpp(136,61): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\filip\OneDrive\Desktop\1\Programowanie_zaawansowane\Pong\main.cpp(140,61): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+  Pong.vcxproj -> C:\Users\filip\OneDrive\Desktop\1\Programowanie_zaawansowane\Pong\x64\Debug\Pong.exe
+  'pwsh.exe' is not recognized as an internal or external command,
+  operable program or batch file.
