@@ -1,21 +1,23 @@
-# Filip_Zuziak_Portfolio
-Portfolio z projektami programistycznymi do CV
+Filip_Zuziak_Portfolio
 
-W tym repozytorium znajdują się wybrane projekty, nad którymi pracowałem w trakcie nauki programowania w językach **C++** oraz **Python**.
+Portfolio of programming projects for CV
 
-## Opisy poszczególnych projektów
+This repository contains selected projects I worked on while learning programming in C++ and Python.
 
-**Snake Game**  
-Gra Snake napisana w języku Python z wykorzystaniem biblioteki `turtle`.
+Project Descriptions
 
-**Tetris**  
-Klasyczna gra Tetris napisana w języku C++ z użyciem biblioteki `raylib`. Projekt zawiera pliki nagłówkowe i źródłowe, a także podfoldery z muzyką i czcionkami. Gra została stworzona z pomocą poradnika z YouTube: [link](https://www.youtube.com/watch?v=wVYKG_ch4yM).
+Snake Game
+A Snake game written in Python using the turtle library.
 
-**Pong**  
-Gra polegająca na rywalizacji gracza z komputerem w odbijaniu piłeczki prostokątną platformą. Zaimplementowana w języku C++ przy użyciu biblioteki `raylib`.
+Tetris
+The classic Tetris game written in C++ using the raylib library. The project includes header and source files, as well as subfolders with music and fonts. The game was created following a YouTube tutorial: link
+.
 
-**Lorenz_Curve**  
-Program w języku Python umożliwiający narysowanie krzywej Lorenza oraz obliczenie współczynnika Giniego na podstawie danych z pliku `.xlsx`. Aplikacja posiada GUI, które pozwala wybrać plik wejściowy.
+Pong
+A game where the player competes against the computer by bouncing a ball with a rectangular paddle. Implemented in C++ using the raylib library.
 
-**Text_analysis**  
-Program w języku Python, który przepisuje poprawne linie tekstu z pliku, a błędne wiersze wypisuje w konsoli wraz z informacją o rodzaju błędu.
+Lorenz_Curve
+A Python program that allows you to plot the Lorenz curve and calculate the Gini coefficient based on data from an .xlsx file. The application features a GUI for selecting the input file.
+
+Text_analysis
+A Python program that copies correct lines of text from a file and prints incorrect lines to the console along with information about the type of error.
