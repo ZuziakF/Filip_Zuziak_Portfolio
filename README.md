@@ -25,3 +25,10 @@ A Python program that allows you to plot the Lorenz curve and calculate the Gini
 **Text_Analysis**
 
 A Python program that copies correct lines of text from a file and prints incorrect lines to the console along with information about the type of error.
+
+**Athlete Management System**
+
+A multi-layered desktop application written in C# (WPF) designed for managing winter sports athletes. The project demonstrates a professional approach to Object-Oriented Programming *(OOP)*, featuring a clear separation of concerns with dedicated layers for Data Access, Core Business Logic, and UI. It includes a console interface for testing and a graphical user interface *(WPF)*.
+
+**EDA Analysis**
+An Exploratory Data Analysis (EDA) conducted in R. This project focuses on statistical data processing and visualization to uncover patterns and insights. It showcases the ability to handle datasets, perform data cleaning, and generate informative plots (using libraries like `ggplot2`).
