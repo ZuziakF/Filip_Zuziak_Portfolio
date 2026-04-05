@@ -1,0 +1,482 @@
+---
+title: "Social Media Addiction - Analiza EDA"
+author: "Filip Zuziak"
+date: "2026-01-15"
+output: 
+  html_document:
+    df_print: paged
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+## Wprowadzenie
+
+Tworząc moją analizę EDA zdecydowałem się na wykorzystanie danych "Students Social Media Addiction" autorstwa Adil Shamim. 
+
+```{r}
+
+dane <- read.csv("Students Social Media Addiction.csv")
+```
+
+Biblioteki użyte podczas analizy:
+
+```{r warning=FALSE}
+
+library(tidyverse)
+library(mice)
+library(corrplot)
+library(tidyr)
+```
+## Zapoznanie się z danymi
+
+Przed rozpoczęciem analizy zapoznamy się z zestawem danych, na podstawie którego przeprowadzę analizę.
+```{r}
+names(dane)
+str(dane)
+summary(dane)
+head(dane)
+```
+Na podstawie funkcji użytych wyżej jesteśmy w stanie opisać co przedstawia nasz zestaw danych - jest to wielowymiarowy zbiór informacji łączący nawyki cyfrowe studentów z ich życiem akademickim i relacjami. Dane obejmują populację osób w wieku 16–25 lat z róźnych krajów i o różnym poziomie wykształcenia. Funkcja `summary()` pozwala nam już na starcie dostrzec bardzo ciekawe zależności, którymi zajmiemy się w dalszej części naszej analizy.
+Sprawdźmy czy nasz zestaw posiada jakiekolwiek braki.
+
+```{r}
+library(mice)
+md.pattern(dane,plot=FALSE)
+```
+
+Przejdźmy teraz przez zmienne w naszych danych, zacznę od Gender oraz Academic_Level.
+
+```{r}
+table(dane$Gender,dane$Academic_Level)
+```
+
+Pierwsze co widzimy to brak odpowiedniej kolejności w zmiennej Academic_Level, musimy ułożyć je w odpowiedniej kolejności.
+
+```{r}
+dane$Academic_Level <- factor(dane$Academic_Level, 
+                              levels = c("High School", "Undergraduate", "Graduate"))
+table(dane$Gender,dane$Academic_Level)
+```
+
+Widać, że "Undergraduate" dominowane jest przez kobiety, a Graduate przez mężczyzn.
+Zmieńmy jeszcze zmienną Gender na kategoryczną.
+
+```{r}
+dane$Gender <- as.factor(dane$Gender)
+```
+
+Teraz popatrzę na zmiennę Relationship_Status oraz Affects_Academic_Performance.
+
+```{r}
+table(dane$Affects_Academic_Performance)
+table(dane$Relationship_Status)
+```
+
+Również zmieńmy te zmienne na kategoryczne.
+
+```{r}
+
+dane$Affects_Academic_Performance <- as.factor(dane$Affects_Academic_Performance)
+dane$Relationship_Status <- factor(dane$Relationship_Status, 
+                              levels = c("Single", "In Relationship", "Complicated"))
+```
+
+
+## Zmienne
+
+Po analize naszych danych oraz przejrzeniu samego pliku możemy wypisać sobie zmienne
+
+- **Student ID** (ID studenta)
+- **Age** (Wiek)
+- **Gender** (Płeć)
+- **Academic_Level** (Wykształcenie)
+- **Country** (Kraj)
+- **Avg_Daily_Usage_Hours** (Średnie używanie Social Mediów)
+- **Most_Used_Platform** (ID studenta)
+- **Student ID** (ID studenta)
+- **Affects_Academic_Performance** (Wpływ na wyniki w nauce)
+- **Sleep_Hours_Per_Night** (Średnia liczba godzin snu)
+- **Mental_Health_Score** (Ocena zdrowia psychicznego)
+- **Relationship_Status** (Status związku)
+- **Conflicts_Over_Social_Media** (Liczba konfliktów przez social media)
+- **Addicted_Score** (Wynik uzależnienia)
+
+
+
+## Wpływ związku na osiągi naukowe
+
+Na początek sprawdźmy, czy status związku wpływa na osiągi naukowe?
+
+```{r}
+table(dane$Affects_Academic_Performance,dane$Relationship_Status)
+```
+
+Pokażmy to sobie na wykresie, użyjemy position="fill" aby zobaczyć proporcje.
+
+```{r}
+dane %>%
+  filter(!is.na(Relationship_Status), !is.na(Affects_Academic_Performance)) %>%
+  ggplot(aes(x = Relationship_Status, fill = Affects_Academic_Performance)) +
+  geom_bar(position="fill") + 
+  
+  theme_minimal() +
+  labs(title = "Liczba studentów w podziale na status i wpływ na osiągi naukowe",
+       x = "Status związku",
+       y = "Liczba studentów",
+       fill = "Czy wpływa na osiągi naukowe?")
+```
+
+Zauważamy, że osoby będące singlem/singielką mają większą tendecję do pogorszenia swoich wyników w nauce, bardzo podobnie jest w statusie `Complicated` chociaż tutaj musimy wziąć pod uwagę, że grupa osób jest o wiele mniejsza, u osób w związku proporcja ta się wyrównuje.
+Zróbmy dla tego problemu jeszcze test niezależności Chi-kwadrat:
+
+```{r}
+chi <- chisq.test(table(dane$Relationship_Status, dane$Affects_Academic_Performance))
+chi
+```
+
+Wartość p < 0.05 informuje nas, że dwie zmienne są od siebie zależne co potwierdza to co widzimy na wykresie.
+ 
+## Czy śpiący dłużej czują się lepiej psychicznie?
+
+Zajmijmy się teraz zmiennymi `Sleep_Hours_Per_Night` i `Mental_Health_Score`.
+
+```{r}
+table(dane$Mental_Health_Score)
+summary(dane$Sleep_Hours_Per_Night)
+
+
+dane %>%
+  mutate(
+    Sleep_temp= Sleep_Hours_Per_Night,
+    Health_temp = cut_width(Mental_Health_Score, width = 2, boundary = 1)
+  ) %>%
+  ggplot(aes(x = Health_temp, y = Sleep_temp, fill = Health_temp)) +
+  geom_boxplot(color = "black", outlier.color = "black", alpha = 0.8) +
+  theme_minimal() +
+  theme(legend.position = "none") +
+  labs(title = "Kondycja psychiczna a długość snu",
+       x = "Kondycja psychiczna (skala 1-10)",
+       y = "Liczba godzin snu",
+       fill = "Przedział punktowy")
+```
+
+Widzimy, że lepsza kondycja psychiczna idzie z dłuższą ilością snu, dane posiadają osoby, które pomimo małej ilości snu posiadają kondycje psychiczną w przedziale (5:7], zależność między zmiennymi jest widoczna poprzez wzrost wysokości kolejnych boxplotów.
+
+## Czy długie używanie social mediów zabiera nam sen?
+
+Sprawdźmy teraz jak średnia dzienna ilość korzystania z social mediów (`Avg_Daily_Usage_Hours`) wpływa na ilość snu,
+zanim jednak sprawdźmy jak wyglądają dane `Avg_Daily_Usage_Hours`:
+
+```{r}
+summary(dane$Avg_Daily_Usage_Hours)
+```
+
+```{r warning=FALSE}
+dane %>%
+  ggplot(aes(x = Avg_Daily_Usage_Hours, y = Sleep_Hours_Per_Night)) +
+  geom_point(alpha = 0.4, color = "darkblue") +
+  geom_smooth(method = "lm",formula = y ~ x, color = "red", size = 1.5) +
+  theme_light() +
+  labs(title = "Średnie użycie Social Mediów a ilość snu",
+       subtitle = "Im ciemniejsza kropka tym więcej osób jest skumulowanych w tym miejscu",
+       x = "Średnia ilość korzystania z Social Mediów",
+       y = "Godziny snu ")
+```
+
+Linia trendu sugeruje, że między zmiennymi występuje korelacja ujemna - więcej korzystania z mediów społecznościowych zmiejsza ilość snu. Są jednak studenci oddaleni od linii trendu śpiący krótko pomimo nie aż tak dużego czasu spędzonego w aplikacjach.
+
+## Im więcej korzystamy tym bardziej się uzależniamy?
+
+Kontynuując naszą analizę, zostawiamy `Avg_Daily_Usage_Hours` pod lupą, sprawdźmy tym razem jak ta zmienna wpływa na `Addicted_Score`, wnioskując na podstawie wykresu wyżej możemy postawić hipotezę, że średni czas wpływa na poziom uzależnienia. Sprawdźmy jednak co pokaże nam na ten temat relacja między tymi zmiennymi.
+
+```{r}
+
+dane %>%
+  group_by(Addicted_Score) %>%
+summarise(
+    srednia=mean(Avg_Daily_Usage_Hours,na.rm=TRUE),
+    mediana=median(Avg_Daily_Usage_Hours,na.rm=TRUE),
+    srednia=mean(Avg_Daily_Usage_Hours,na.rm=TRUE),
+    odchylenie=sd(Avg_Daily_Usage_Hours,na.rm=TRUE),
+    liczba_studentow = n()
+  )
+
+```
+
+Analizując zestawione statystyki opisowe, widzimy wyraźną, monotoniczną tendencję wzrostową, gdzie wyższym wartościom wskaźnika Addicted_Score odpowiadają sukcesywnie rosnące poziomy średniej oraz mediany. Zauważamy również wysoką zbieżność obu tych miar, co sugeruje symetryczny rozkład badanej cechy w poszczególnych podgrupach. Warto zwrócić uwagę na stabilność odchylenia standardowego w liczniejszych grupach, choć interpretację dla najniższego punktu skali musimy traktować ostrożnie ze względu na jego jednostkową liczebność.
+
+## Które platformy dominują?
+
+Stwórzmy wykres słupkowy dla platform używanych przez użytkowników.
+
+```{r}
+
+table(dane$Most_Used_Platform)
+dane %>%
+  ggplot(aes(x = fct_infreq(Most_Used_Platform)))+
+  geom_bar(color="darkgreen",fill="lightgreen")+
+  theme_bw()+
+  coord_flip() +
+  labs(title="Rodzaj platformy",
+       caption="Są to platformy, na których użytkownicy spędzają najwięcej czasu",
+       x="Platforma",
+       y="Liczba użytkowników")
+```
+
+Wykres słupkowy pokazuje dominację 3 platform: Instagrama, TikToka i Facebooka, reszta tworzy nam tzw "Długi ogon". Badanie zależności na wartościach typu 12 lub 15 może być bardzo mylące gdyż już jedna wartość odstająca może zaburzyć nasze dane.
+Połączmy sobie te dane w kategorie "Other".
+
+```{r}
+dane_temp <- dane %>%
+  mutate(
+    Most_Used_Platform= fct_lump_n(Most_Used_Platform, n = 4, other_level = "Other"),
+    Most_Used_Platform=fct_infreq(Most_Used_Platform),
+    Most_Used_Platform=fct_relevel(Most_Used_Platform, "Other", after = Inf)
+  )
+
+ggplot(dane_temp, aes(x = Most_Used_Platform)) +
+  geom_bar(fill = "lightgreen", color = "darkgreen") +
+  coord_flip() +
+  theme_minimal() +
+  labs(title = "Rodzaj Platformy",y="Liczba użytkowników",x="Platforma",caption="Są to platformy, na których użytkownicy spędzają najwięcej czasu")
+```
+
+Po stworzeniu `Other` zobaczmy jak podział platform wygląda w poszczególnych krajach.
+
+```{r}
+table(dane$Country,fct_lump_n(dane$Most_Used_Platform, n = 5, other_level = "Other"))
+  
+```
+
+Obecna tabela jest nieczytelna ze względu na obecność wielu krajów reprezentowanych przez pojedynczych użytkowników. Zaburza to obraz danych dla grup o większej liczebności. W celu poprawy jakości analizy, odfiltrujemy kraje o małej próbie badawczej.
+
+```{r}
+kraje_znaczace<-dane %>%
+  add_count(Country) %>%
+  filter(n>15) %>%
+  mutate(Most_Used_Platform = fct_lump_n(Most_Used_Platform, n = 5, other_level = "Other"))
+table(kraje_znaczace$Country,kraje_znaczace$Most_Used_Platform)
+```
+
+Tabela pokazuje nam bardzo ciekawe statystyki, zajmijmy się Chinami, Japonią oraz Rosją - dominuje w nich kategoria `Other`, spowodowane to jest faktem iż ich użytkownicy nie korzystają z zachodnich aplikacji. Dominacje WhatsApp widzimy w Meksyku i Indiach, tylko te dwa mają jakiekolwiek osoby korzystające z tej aplikacji. Rynek Ameryki Północnej jest podzielony między TikToka a Instagrama, tego drugiego zaś bardzo lubi używać Europa Zachodnia.
+
+## Agresja w Social Mediach
+
+Zostańmy dalej przy krajach, sprawdźmy jaki kraj jest najbardziej agresywny w sieci.
+
+```{r}
+summary(dane$Conflicts_Over_Social_Media)
+agresja<-dane %>%
+  add_count(Country) %>%
+  filter(n>10) %>%
+  group_by(Country) %>%
+  summarise(
+    srednia_konfliktow=mean(Conflicts_Over_Social_Media,na.rm=TRUE),
+    badani=n()
+  ) %>%
+  arrange(desc(srednia_konfliktow))
+head(agresja,5)
+
+ggplot(agresja, aes(x=reorder(Country,srednia_konfliktow), y = srednia_konfliktow)) +
+  geom_col(fill="firebrick", color="black") +
+  coord_flip()+
+  theme_light()+
+  labs(
+    title="Jaki kraj jest najbardziej agresywny?",
+    subtitle="Na podstawie danych z pliku",
+    x="Kraje",
+    y="Srednia liczba konfliktow"
+  )
+
+```
+
+Na podstawie naszych danych wychodzi, że USA, Indie, Bangladesz, Pakistan i Turcja to najbardziej agresywne kraje (liczba osób z kraju >10).`Summary` pokazuje nam również, że mediana jest równa 3 co świadczy o tym, że internet nie jest miejscem zbytnio miłym.
+Widzimy, że użytkownicy ze WSZYSTKICH krajów na wykresie średnio biorą udział w > 1 konflikcie przez social media.
+
+Kontynuujmy analizę, nie oddalajmy się zbytnio ale sprawdźmy czy osoby bardziej wykształcone wciągają się w więcej konfliktów, niż osoby, które są mniej wykształcone.
+
+```{r}
+table(dane$Academic_Level,dane$Conflicts_Over_Social_Media)
+```
+
+Na pierwszy rzut oka możemy zauważyć parę ciekawych informacji, między innymi, że wśród osób ze szkół średnich zdecydowana większość posiada aż 4 konflikty.
+Zilustrujmy tą tabelkę na wykresie:
+
+```{r warning=FALSE}
+
+ggplot(dane,aes(x=Academic_Level,fill=Conflicts_Over_Social_Media))+
+  geom_bar()+
+  theme_light()+
+  labs(
+    title="Wykształcenie a ilość konfliktów",
+    x="Wykształcenie",
+    y="Konflikty",
+    fill="Ilość Konfliktów"
+  )
+```
+
+Mamy wykres ale nie oddaje on tego co tabelka, musimy zamienić zmienną `Conflicts_Over_Social_Media` na zmienną kategoryczną, nie podmnieniajmy jej jednak, a dodajmy jako dodatkową kolumnę bo może nam się ona jeszcze przydać przy liczeniu statystyk opisowych.
+
+```{r}
+dane <- dane %>%
+  mutate(Conflicts_Over_Social_Media_Factor = as.factor(Conflicts_Over_Social_Media))
+```
+
+Stwórzmy ponownie wykres.
+
+```{r}
+ggplot(dane,aes(x=Academic_Level,fill=Conflicts_Over_Social_Media_Factor))+
+  geom_bar()+
+  theme_light()+
+  labs(
+    title="Wykształcenie a ilość konfliktów",
+    x="Wykształcenie",
+    y="Konflikty",
+    fill="Ilość Konfliktów"
+  )
+```
+
+Co możemy zauważyć? Oczywiście to co stwierdziliśmy na podstawie tabelki - w przypadku `High School` zdecydowana większość osób posiada 4 konflikty. W przypadku dwóch pozostałych ponad połowę stanowią osoby z liczbą konfliktów 3 oraz 4. Grupa osób z najwyższym wykształceniem posiada również niewielką część osób bez konfliktów.
+
+## Czy internetowa agresja uczniów szkół wyższych wpływa na ich sytuację miłosną?
+
+Idźmy trochę dalej, skoro uczniowie szkół wyższych są bardziej konflitkowi to czy ma to przełożenie na ich sytuację związkową? Zbadajmy to.
+
+```{r}
+szkolaw<-dane %>%
+  filter(Academic_Level == "High School") %>%
+  count(Relationship_Status) %>%
+  mutate(Procent = n / sum(n) * 100) %>%
+  mutate(Procent = round(Procent, 1))
+szkolaw
+```
+
+Ciężko tutaj o jakiekolwiek wnioski, nie posiadamy dokładnych informacji co oznacza status `Complicated`. Niemniej, bez twardych definicji, traktujemy tę kategorię ostrożnie i nie łączymy jej jednoznacznie z grupą singli ani osób w stałych związkach.
+
+## Kłótnie na mediach społecznościowcyh ważniejsze od nauki?
+
+Twardo trzymamy się `Conflicts_Over_Social_Media`. Za pomocą statystyk opisowych zobaczmy czy spięcia w sieci wpływają na naukę.
+
+```{r}
+klotnie_opisowe <- dane %>%
+  group_by(Affects_Academic_Performance) %>%
+  summarise(
+    klotnie_srednia = mean(Conflicts_Over_Social_Media, na.rm = TRUE),
+    klotnie_mediana = median(Conflicts_Over_Social_Media, na.rm = TRUE),
+    klotnies_och=sd(Conflicts_Over_Social_Media,na.rm=TRUE)
+  )
+klotnie_opisowe
+```
+
+Porównując obie grupy, zauważamy, że studenci deklarujący negatywny wpływ social mediów na naukę mają przeciętnie wyższą liczbę konfliktów niż pozostali. Wyższe wartości, widoczne także w medianie, wskazują, że problemy w nauce częściej idą w parze z napięciami w relacjach.
+
+## Co i jak wpływa na uzależnienie?
+
+Wykorzystajmy teraz macierz korrelacji aby sprawdzić jak poszczególne kryteria wpływają na nasz `Addicted Score`.
+
+```{r}
+dane_kor <- dane %>%
+  select(Age,Sleep_Hours_Per_Night, Mental_Health_Score, 
+         Conflicts_Over_Social_Media, Addicted_Score) %>%
+  na.omit()
+korelacja <- cor(dane_kor)
+corrplot(korelacja, 
+         method = "color",        
+         type = "lower",          
+         addCoef.col = "black",   
+         tl.col = "black",        
+         tl.cex = 0.6,   
+         tl.srt = 45,
+         number.cex = 0.8,        
+         title = "Wpływ zdrowia psychicznego i konfliktów na uzależnienie",
+         mar = c(0,0,2,0)         
+)
+```
+
+Pominąłem tutaj zmienną Avg_Daily_Usage_Hours, ponieważ jej wpływ omówiłem już wyżej.Popatrzmy na to, co najmocniej koreluje z Addicted_Score.Szczególnie rzuca się w oczy wynik -0,95 przy `Mental_Health_Score` oraz -0,76 przy `Sleep_Hours_Per_Night`. Te liczby potwierdzają to, co podpowiada intuicja: gorsza kondycja psychiczna i mniejsza ilość snu wiążą się z wyższym poziomem uzależnienia. Z kolei przy `Conflicts_Over_Social_Media` mamy bardzo silną korelację dodatnią – im więcej konfliktów w sieci, tym wyższy wynik uzależnienia.
+
+
+Obliczmy statystyki opisowe: 
+
+```{r}
+korelacja_opisowe <- dane %>%
+  group_by(Addicted_Score) %>%
+  summarise(
+    sen_srednia = mean(Sleep_Hours_Per_Night, na.rm = TRUE),
+    sen_mediana = median(Sleep_Hours_Per_Night, na.rm = TRUE),
+    sen_sd = sd(Sleep_Hours_Per_Night, na.rm = TRUE),
+    mental_srednia = mean(Mental_Health_Score, na.rm = TRUE),
+    mental_mediana = median(Mental_Health_Score, na.rm = TRUE),
+    mental_sd = sd(Mental_Health_Score, na.rm = TRUE),
+    liczba_studentow = n()
+  )
+korelacja_opisowe
+```
+
+Analiza rozkładu snu w poszczególnych grupach ujawnia, że każdemu wzrostowi wskaźnika uzależnienia towarzyszy systematyczny spadek średniej długości wypoczynku. Poziom kondycji psychicznej również się obniża. Pokażmy sobie jeszcze średnie wartości na wykresie:
+
+```{r}
+ggplot(korelacja_opisowe, aes(x = Addicted_Score)) +
+  geom_line(aes(y = sen_srednia, color = "Długość snu"), size = 1.2) +
+  geom_point(aes(y = sen_srednia, color = "Długość snu"), size = 3) +
+  geom_line(aes(y = mental_srednia, color = "Zdrowie Psychiczne"), size = 1.2, linetype = "dashed") +
+  geom_point(aes(y = mental_srednia, color = "Zdrowie Psychiczne"), size = 3) +
+  labs(
+    title = "Wpływ poziomu uzależnienia na sen i zdrowie psychiczne",
+    x = "Addicted Score",
+    y = "Średnia wartość",
+    color = "Legenda"
+  ) +
+  scale_color_manual(values = c("Długość snu" = "steelblue", "Zdrowie Psychiczne" = "firebrick")) +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+```
+
+## Kobiety czy mężczyźni?
+
+Na koniec sprawdźmy, jak mają się poszczególne zmienne w stosunku do płci, to również pokażemy sobie przez statystyki opisowe.
+
+```{r}
+plec_opisowe <- dane %>%
+  group_by(Gender) %>%
+  summarise(
+    sen_srednia = mean(Sleep_Hours_Per_Night, na.rm = TRUE),
+    sen_mediana = median(Sleep_Hours_Per_Night, na.rm = TRUE),
+    sen_sd = sd(Sleep_Hours_Per_Night, na.rm = TRUE),
+    mental_srednia = mean(Mental_Health_Score, na.rm = TRUE),
+    mental_mediana = median(Mental_Health_Score, na.rm = TRUE),
+    mental_sd = sd(Mental_Health_Score, na.rm = TRUE),
+    srednie_uzycie_srednia = mean(Avg_Daily_Usage_Hours, na.rm = TRUE),
+    srednie_uzycie_mediana = median(Avg_Daily_Usage_Hours, na.rm = TRUE),
+    srednie_uzycie_modchylenie = sd(Avg_Daily_Usage_Hours, na.rm = TRUE),
+    uzaleznienie_srednia = mean(Addicted_Score, na.rm = TRUE),
+    uzaleznienie_mediana = median(Addicted_Score, na.rm = TRUE),
+    uzaleznieniel_sd = sd(Addicted_Score, na.rm = TRUE),
+    liczba_studentow = n()
+  )
+plec_opisowe
+```
+
+Tabela jest niewygodna do odczytu, zanim wyciągniemy jakiekolwiek wnioski, zmieńmy wiersze i kolumny.
+
+```{r}
+
+plec_opisoweT <- plec_opisowe %>%
+  pivot_longer(cols = -Gender, names_to = "Statystyka", values_to = "Wartosc") %>%
+  pivot_wider(names_from = Gender, values_from = Wartosc)
+
+plec_opisoweT
+```
+
+Spoglądając na średnie i mediany, dochodzimy do ważnego wniosku: płeć nie jest istotnym czynnikiem różnicującym w badanej próbie. 
+Zróbmy jeszcze do tego test t-studenta i zobaczmy co nam pokaże:
+
+```{r}
+student<-t.test(Addicted_Score ~ Gender, data = dane)
+student
+```
+
+Test t-studenta potwierdza nam wnioski stwierdzone wyżej, płeć nie jest istotnym czynnikiem wpływającym na stopień uzależnienia.
+
