@@ -33,3 +33,12 @@ A multi-layered desktop application written in C# (WPF) designed for managing wi
 **EDA Analysis**
 
 An Exploratory Data Analysis (EDA) conducted in R. This project focuses on statistical data processing and visualization to uncover patterns and insights. It showcases the ability to handle datasets, perform data cleaning, and generate informative plots (using libraries like `ggplot2`).
+
+**XAU/USD Market Prediction: Custom Neural Networks & Classic ML**
+A machine learning project focused on predicting gold market (XAU/USD) prices and trend directions. The main objective of this project was a deep exploration of ML algorithms, including building a Multi-Layer Perceptron (MLP) neural network.
+
+- A custom neural network implementation using `NumPy` matrices. It features a hand-written - backpropagation algorithm, weight initialization, and various activation functions *(Sigmoid, ReLU, Tanh)* along with their derivatives.
+
+- Dual Analytical Approach: Models are tailored for both regression tasks (predicting specific price points, optimizing MSE) and classification tasks (predicting upward/downward trends, optimizing Accuracy).
+
+- Classic ML Benchmarking: Utilizing Scikit-Learn to compare the custom network's performance against classic algorithms: k-Nearest Neighbors *(k-NN)*, *Decision Trees*, *Random Forest*, and Support Vector Machines *(SVM)*.
