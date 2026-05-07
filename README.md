@@ -1,44 +1,70 @@
-Filip_Zuziak_Portfolio
+# 👋 Hi, I'm Filip Zuziak
+**Software Developer | Machine Learning | Data Analyst**
 
-Portfolio of programming projects for CV
+Welcome to my portfolio! This repository showcases my diverse programming projects, demonstrating my skills across multiple technologies. My work ranges from designing software architecture and building UI to developing custom machine learning models and performing exploratory data analysis.
 
-This repository contains selected projects I worked on while learning programming in C++ and Python.
+### 🛠️ Tech Stack & Core Skills
+* **Languages:** Python, C#, C++, R
+* **Technologies & Frameworks:** WPF, NumPy, Scikit-Learn, Raylib, Pandas, ggplot2
+* **Key Competencies:** Object-Oriented Programming (OOP), Custom Neural Networks Architecture, Classic ML Algorithms, Data Visualization, GUI Development
 
-Project Descriptions
+---
 
-**Snake Game**
+## 🚀 Featured Projects
 
-A Snake game written in Python using the `turtle` library.
+### 📈 [XAU/USD Market Prediction: Custom Neural Networks & Classic ML](./Custom Neural Networks & Classic ML)
+A comprehensive machine learning project focused on predicting gold market (XAU/USD) prices and trend directions. The primary objective was a deep exploration of ML algorithms by building a Multi-Layer Perceptron (MLP) entirely from scratch.
+* **Tech Stack:** `Python`, `NumPy`, `Scikit-Learn`
+* **Custom Architecture:** Developed a neural network using only NumPy matrices. Features include a hand-written backpropagation algorithm, custom weight initialization, and derivation of activation functions (Sigmoid, ReLU, Tanh).
+* **Dual Analytical Approach:** Models are tailored for both regression tasks (optimizing Mean Squared Error for specific price points) and classification tasks (optimizing Accuracy for upward/downward trends).
+* **Benchmarking:** Utilized Scikit-Learn to compare the custom network's performance against classic algorithms: k-Nearest Neighbors (k-NN), Decision Trees, Random Forest, and Support Vector Machines (SVM).
 
-**Tetris**
+> **Model Training Results (Regression Analysis):**
+> ![ML Console Output](./images/regression.png)
 
-The classic Tetris game written in C++ using the `raylib` library. The project includes header and source files, as well as subfolders with music and fonts. The game was created following a YouTube tutorial: [link](https://www.youtube.com/watch?v=wVYKG_ch4yM).
+### ⛷️ [Athlete Management System](./Athlete Management System)
+A multi-layered desktop application designed for managing winter sports athletes, highlighting a professional approach to software engineering and robust architecture.
+* **Tech Stack:** `C#`, `WPF`, `.NET`
+* **Architecture:** Demonstrates strong Object-Oriented Programming (OOP) principles with a strict separation of concerns, featuring dedicated layers for Data Access, Core Business Logic, and the User Interface.
+* **Interface:** Includes a console interface for core logic testing alongside a fully-fledged Graphical User Interface (WPF) with user authentication and data management forms.
 
-**Pong**
+> **Application Interface (Main Dashboard & Login):**
+> ![Athlete System GUI](./images/gui.png)
+> ![Athlete System Login](./images/login.png)
 
-A game where the player competes against the computer by bouncing a ball with a rectangular paddle. Implemented in C++ using the `raylib` library.
+---
 
-**Lorenz_Curve**
+## 📊 Data Analysis & Utilities
 
-A Python program that allows you to plot the Lorenz curve and calculate the Gini coefficient based on data from an `.xlsx` file. The application features a GUI for selecting the input file.
+### 📉 [Exploratory Data Analysis (EDA)](./EDA Analysis)
+An Exploratory Data Analysis project focused on statistical data processing and insights generation.
+* **Tech Stack:** `R`, `ggplot2`
+* **Description:** Showcases the ability to handle datasets, perform complex data cleaning, and generate informative statistical plots to uncover hidden patterns and trends.
 
-**Text_Analysis**
 
-A Python program that copies correct lines of text from a file and prints incorrect lines to the console along with information about the type of error.
+### 📐 [Lorenz Curve & Gini Coefficient Calculator](./Lorenz Curve)
+A Python utility application that automates economic data analysis based on spreadsheet inputs.
+* **Tech Stack:** `Python`, `GUI Library`, `Pandas / Openpyxl`
+* **Description:** Parses `.xlsx` files to plot the Lorenz curve and precisely calculate the Gini coefficient. The application features a graphical user interface for seamless input file selection.
 
-**Athlete Management System**
 
-A multi-layered desktop application written in C# (WPF) designed for managing winter sports athletes. The project demonstrates a professional approach to Object-Oriented Programming *(OOP)*, featuring a clear separation of concerns with dedicated layers for Data Access, Core Business Logic, and UI. It includes a console interface for testing and a graphical user interface *(WPF)*.
+### 📝 [Log & Text Analysis Tool](./Text Analysis)
+A robust Python script designed for data validation and text file processing.
+* **Tech Stack:** `Python`
+* **Description:** Automatically scans files to filter correct lines of text while catching erroneous data, printing detailed information about the error types directly to the console.
 
-**EDA Analysis**
+---
 
-An Exploratory Data Analysis (EDA) conducted in R. This project focuses on statistical data processing and visualization to uncover patterns and insights. It showcases the ability to handle datasets, perform data cleaning, and generate informative plots (using libraries like `ggplot2`).
+## 🎮 Game Development (C++ & Python)
 
-**XAU/USD Market Prediction: Custom Neural Networks & Classic ML**
-A machine learning project focused on predicting gold market (XAU/USD) prices and trend directions. The main objective of this project was a deep exploration of ML algorithms, including building a Multi-Layer Perceptron (MLP) neural network.
+### 🧩 [Tetris Clone](./Tetris)
+A classic Tetris implementation built to master memory management, game loops, and project structuring.
+* **Tech Stack:** `C++`, `Raylib`
+* **Description:** Developed with a modular approach, separating logic into headers and source files, and cleanly managing assets like music and custom fonts.
 
-- A custom neural network implementation using `NumPy` matrices. It features a hand-written - backpropagation algorithm, weight initialization, and various activation functions *(Sigmoid, ReLU, Tanh)* along with their derivatives.
 
-- Dual Analytical Approach: Models are tailored for both regression tasks (predicting specific price points, optimizing MSE) and classification tasks (predicting upward/downward trends, optimizing Accuracy).
-
-- Classic ML Benchmarking: Utilizing Scikit-Learn to compare the custom network's performance against classic algorithms: k-Nearest Neighbors *(k-NN)*, *Decision Trees*, *Random Forest*, and Support Vector Machines *(SVM)*.
+### 🏓 [Arcade Classics: Pong & Snake](./Pong, ./Snake Game)
+Implementations of foundational arcade games focusing on core logic, user input processing, and real-time rendering.
+* **Pong:** Written in `C++` using the `Raylib` framework. Features a Player vs. Computer mode with basic AI paddle mechanics.
+* **Snake:** Written in `Python` utilizing the built-in `turtle` graphics library.
+> 📸 *[Space for future GIFs: e.g., `![Pong Demo](./images/pong.gif)`]*
