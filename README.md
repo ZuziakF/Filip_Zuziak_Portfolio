@@ -3,7 +3,7 @@
 
 Welcome to my portfolio! This repository showcases my diverse programming projects, demonstrating my skills across multiple technologies. My work ranges from designing software architecture and building UI to developing custom machine learning models and performing exploratory data analysis.
 
-### 🛠️ Tech Stack & Core Skills
+### Tech Stack & Core Skills
 * **Languages:** Python, C#, C++, R
 * **Technologies & Frameworks:** WPF, NumPy, Scikit-Learn, Raylib, Pandas, ggplot2
 * **Key Competencies:** Object-Oriented Programming (OOP), Custom Neural Networks Architecture, Classic ML Algorithms, Data Visualization, GUI Development
@@ -12,7 +12,7 @@ Welcome to my portfolio! This repository showcases my diverse programming projec
 
 ## Featured Projects
 
-### 📈 [XAU/USD Market Prediction: Custom Neural Networks & Classic ML](<./Custom Neural Networks & Classic ML>)
+### [XAU/USD Market Prediction: Custom Neural Networks & Classic ML](<./Custom Neural Networks & Classic ML>)
 A comprehensive machine learning project focused on predicting gold market (XAU/USD) prices and trend directions. The primary objective was a deep exploration of ML algorithms by building a Multi-Layer Perceptron (MLP) entirely from scratch.
 * **Tech Stack:** `Python`, `NumPy`, `Scikit-Learn`
 * **Custom Architecture:** Developed a neural network using only NumPy matrices. Features include a hand-written backpropagation algorithm, custom weight initialization, and derivation of activation functions (Sigmoid, ReLU, Tanh).
