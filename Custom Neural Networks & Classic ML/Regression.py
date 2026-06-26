@@ -133,7 +133,6 @@ def run_experiment(X, y, test_split, layers, lr, activation, epochs, repeats=5):
     return avg_train, best_train, avg_test, best_test
 
 if __name__ == "__main__":
-    print("Ładowanie danych...")
     X, y = load_and_prep_data('xauusd_dla_excela.csv')
     input_size = X.shape[1]
     
@@ -150,8 +149,8 @@ if __name__ == "__main__":
             ([input_size, 20, 1], "20 neuronów"),
             ([input_size, 50, 1], "50 neuronów")
         ],
-        "2. Współczynnik uczenia (Learning Rate)": [0.1, 0.01, 0.005, 0.001],
-        "3. Liczba epok (Iteracji)": [500, 1000, 2000, 3000],
+        "2. Współczynnik uczenia": [0.1, 0.01, 0.005, 0.001],
+        "3. Liczba Iteracji": [500, 1000, 2000, 3000],
         "4. Funkcja aktywacji": ['sigmoid', 'relu', 'tanh', 'linear'],
         "5. Rozmiar próby testowej": [0.1, 0.2, 0.3, 0.4],
         "6. Liczba warstw ukrytych (po 10 neuronów)": [
@@ -162,10 +161,10 @@ if __name__ == "__main__":
         ]
     }
     
-    print("ROZPOCZYNANIE BADAŃ DLA PROBLEMU REGRESJI (MSE ustandaryzowane)\n")
+    print("Badania dla programu regresji\n")
     
     for exp_name, values in experiments.items():
-        print(f"--- Badany parametr: {exp_name} ---")
+        print(f"Badany parametr: {exp_name}")
         print(f"{'Wartość':<15} | {'Śr. błąd TRAIN':<15} | {'Najl. błąd TRAIN':<18} | {'Śr. błąd TEST':<15} | {'Najl. błąd TEST'}")
         print("-" * 85)
         
