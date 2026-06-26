@@ -63,8 +63,8 @@ A classic Tetris implementation built to master memory management, game loops, a
 * **Description:** Developed with a modular approach, separating logic into headers and source files, and cleanly managing assets like music and custom fonts.
 
 
-###  [Arcade Classics: Pong](<./Pong>)
-### [Arcade Classics: Snake](<./Snake Game>)
+###  [Pong Game](<./Pong>)
+### [Snake Game](<./Snake Game>)
 Implementations of foundational arcade games focusing on core logic, user input processing, and real-time rendering.
 * **Pong:** Written in `C++` using the `Raylib` framework. Features a Player vs. Computer mode with basic AI paddle mechanics.
 * **Snake:** Written in `Python` utilizing the built-in `turtle` graphics library.
