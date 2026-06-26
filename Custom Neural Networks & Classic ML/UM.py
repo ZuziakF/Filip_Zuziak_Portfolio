@@ -30,8 +30,6 @@ scaler = StandardScaler()
 X_train = scaler.fit_transform(X_train_raw)
 X_test = scaler.transform(X_test_raw)
 
-print("ROZPOCZYNANIE ANALIZY DLA 4 METOD (UM)\n")
-
 experiments = [
     {
         "name": "1. k-Nearest Neighbors",
@@ -68,9 +66,8 @@ experiments = [
 ]
 
 for exp in experiments:
-    print(f"--- Metoda: {exp.get('name', exp.get('nami'))} ---")
-    print(f"{'Wartość':<10} | {'Regresja MSE (RMSE)':<27} | {'Klasyfikacja (ACC)':<18}")
-    print("-" * 60)
+    print(f"Metoda: {exp.get('name', exp.get('name'))}")
+    print(f"{'Wartość':<10} | {'Regresja MSE':<27} | {'Klasyfikacja':<18}")
     
     for val in exp['values']:
         params = {exp['arg_name']: val}
