@@ -13,11 +13,11 @@ Welcome to my portfolio! This repository showcases my diverse programming projec
 ## Featured Projects
 
 ### [XAU/USD Market Prediction: Custom Neural Networks & Classic ML](<./Custom Neural Networks & Classic ML>)
-A comprehensive machine learning project focused on predicting gold market (XAU/USD) prices and trend directions. The primary objective was a deep exploration of ML algorithms by building a Multi-Layer Perceptron (MLP) entirely from scratch.
+A comprehensive machine learning project focused on predicting gold market prices and trend directions. The primary objective was a deep exploration of ML algorithms by building a Multi-Layer Perceptron.
 * **Tech Stack:** `Python`, `NumPy`, `Scikit-Learn`
-* **Custom Architecture:** Developed a neural network using only NumPy matrices. Features include a hand-written backpropagation algorithm, custom weight initialization, and derivation of activation functions (Sigmoid, ReLU, Tanh).
-* **Dual Analytical Approach:** Models are tailored for both regression tasks (optimizing Mean Squared Error for specific price points) and classification tasks (optimizing Accuracy for upward/downward trends).
-* **Benchmarking:** Utilized Scikit-Learn to compare the custom network's performance against classic algorithms: k-Nearest Neighbors (k-NN), Decision Trees, Random Forest, and Support Vector Machines (SVM).
+* **Custom Architecture:** Developed a neural network using only NumPy matrices. Features include a backpropagation algorithm, custom weight initialization, and derivation of activation functions (Sigmoid, ReLU, Tanh).
+* **Dual Analytical Approach:** Models are tailored for both regression tasks and classification tasks.
+* **Benchmarking:** Utilized Scikit-Learn to compare the custom network's performance against classic algorithms: k-Nearest Neighbors, Decision Trees, Random Forest, and Support Vector Machines.
 
 > **Model Training Results (Regression Analysis):**
 > ![ML Console Output](./images/regression.png)
@@ -25,8 +25,8 @@ A comprehensive machine learning project focused on predicting gold market (XAU/
 ### [Athlete Management System](<./Athlete Management System>)
 A multi-layered desktop application designed for managing winter sports athletes, highlighting a professional approach to software engineering and robust architecture.
 * **Tech Stack:** `C#`, `WPF`, `.NET`
-* **Architecture:** Demonstrates strong Object-Oriented Programming (OOP) principles with a strict separation of concerns, featuring dedicated layers for Data Access, Core Business Logic, and the User Interface.
-* **Interface:** Includes a console interface for core logic testing alongside a fully-fledged Graphical User Interface (WPF) with user authentication and data management forms.
+* **Architecture:** Demonstrates strong Object-Oriented Programming  principles with a strict separation of concerns, featuring dedicated layers for Data Access, Core Business Logic, and the User Interface.
+* **Interface:** Includes a console interface for core logic testing alongside a fully-fledged Graphical User Interface with user authentication and data management forms.
 
 > **Application Interface (Main Dashboard & Login):**
 > ![Athlete System GUI](./images/gui.png)
@@ -55,7 +55,7 @@ A robust Python script designed for data validation and text file processing.
 
 ---
 
-##  Game Development (C++ & Python)
+##  Game Development
 
 ###  [Tetris Clone](./Tetris)
 A classic Tetris implementation built to master memory management, game loops, and project structuring.
