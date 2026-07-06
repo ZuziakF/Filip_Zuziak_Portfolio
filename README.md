@@ -6,7 +6,7 @@ Welcome to my portfolio! This repository showcases my diverse programming projec
 ### Tech Stack & Core Skills
 * **Languages:** Python, C#, C++, R
 * **Technologies & Frameworks:** WPF, .Net, NumPy, Scikit-Learn, Raylib, Pandas 
-* **Key Competencies:** Object-Oriented Programming, Web Develompment, Machine Learning, Data Visualization, Data Analysis
+* **Key Competencies:** Object-Oriented Programming, Web Development, Machine Learning, Data Visualization, Data Analysis
 
 ---
 
