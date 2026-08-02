@@ -66,13 +66,11 @@ The analysis moves from data cleaning and handling missing values into exploring
 ### [Lorenz Curve & Gini Coefficient Calculator](<./Lorenz Curve>)
 A Python utility application that automates economic data analysis based on spreadsheet inputs.
 * **Tech Stack:** `Python`, `GUI Library`, `Pandas / Openpyxl`
-* **Description:** Parses `.xlsx` files to plot the Lorenz curve and precisely calculate the Gini coefficient. The application features a graphical user interface for seamless input file selection.
 
+A small desktop tool for measuring income inequality from spreadsheet data. The user picks an Excel file through a simple tkinter interface, and the app reads the income column, calculates the Gini coefficient, and plots the Lorenz curve alongside the line of perfect equality for comparison.
 
-### [Log & Text Analysis Tool](<./Text Analysis>)
-A robust Python script designed for data validation and text file processing.
-* **Tech Stack:** `Python`
-* **Description:** Automatically scans files to filter correct lines of text while catching erroneous data, printing detailed information about the error types directly to the console.
+The Gini coefficient is computed directly from the formula rather than through a statistics library, and the Lorenz curve is built from cumulative income shares plotted against cumulative population share. Errors like a missing file or a missing income column are caught and shown to the user instead of crashing the app.
+
 
 ---
 
