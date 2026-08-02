@@ -56,7 +56,7 @@ Once a competition takes place, admins record each athlete's result, which feeds
 
 ### [Exploratory Data Analysis (EDA)](<./EDA Analysis>)
 An Exploratory Data Analysis project focused on statistical data processing and insights generation.
-* **Tech Stack:** `R`, `ggplot2`
+* **Tech Stack:** `R`, `ggplot2`, `tidyverse`
 
 An exploratory analysis of a dataset on social media addiction among students, covering habits, demographics, and wellbeing across roughly seven hundred respondents aged 16 to 25. The dataset includes variables such as `daily usage hours`, `sleep patterns`, `mental health scores`, `academic performance`, and `relationship status`, alongside an overall `addiction score`.
 
