@@ -83,6 +83,12 @@ A classic Tetris implementation built to master memory management, game loops, a
 
 
 ###  [Pong Game](<./Pong>)
+* **Tech Stack:** `C++`, `Raylib`
+
+A classic Pong clone built to practice object-oriented structure in a real-time game loop. The ball, player paddle, and CPU paddle are each their own class, with a shared base Paddle class handling movement and screen boundaries, and a CPUPaddle subclass adding simple AI that tracks the ball's vertical position.
+
+Collision detection is handled per frame between the ball and both paddles, reversing the ball's direction on contact, while hitting either side wall scores a point and resets the ball to the center with a randomized direction. The game keeps score for both sides and displays it live on screen.
+
 ### [Snake Game](<./Snake Game>)
 Implementations of foundational arcade games focusing on core logic, user input processing, and real-time rendering.
 * **Pong:** Written in `C++` using the `Raylib` framework. Features a Player vs. Computer mode with basic AI paddle mechanics.
