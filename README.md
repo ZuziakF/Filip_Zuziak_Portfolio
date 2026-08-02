@@ -77,9 +77,10 @@ The Gini coefficient is computed directly from the formula rather than through a
 ##  Game Development
 
 ###  [Tetris Clone](./Tetris)
-A classic Tetris implementation built to master memory management, game loops, and project structuring.
 * **Tech Stack:** `C++`, `Raylib`
-* **Description:** Developed with a modular approach, separating logic into headers and source files, and cleanly managing assets like music and custom fonts.
+
+
+
 
 
 ###  [Pong Game](<./Pong>)
@@ -90,7 +91,9 @@ A classic Pong clone built to practice object-oriented structure in a real-time 
 Collision detection is handled per frame between the ball and both paddles, reversing the ball's direction on contact, while hitting either side wall scores a point and resets the ball to the center with a randomized direction. The game keeps score for both sides and displays it live on screen.
 
 ### [Snake Game](<./Snake Game>)
-Implementations of foundational arcade games focusing on core logic, user input processing, and real-time rendering.
-* **Pong:** Written in `C++` using the `Raylib` framework. Features a Player vs. Computer mode with basic AI paddle mechanics.
-* **Snake:** Written in `Python` utilizing the built-in `turtle` graphics library.
+* **Tech Stack:** `Python`, `turtle`
+
+A Snake implementation built with Python's turtle graphics library. The snake grows one segment each time it eats, with each body part following the position of the one ahead of it in the previous frame, which is what keeps the trail moving smoothly behind the head.
+
+Hitting the screen border or colliding with its own body resets the game, sending the body segments off screen, clearing the score, and restoring the starting speed. Eating food also gradually speeds up the game by shortening the delay between frames, making it harder to control the longer the snake gets. A live scoreboard tracks both the current score and the high score across resets.
 
