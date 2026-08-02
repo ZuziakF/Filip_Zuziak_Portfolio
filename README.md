@@ -76,7 +76,7 @@ The Gini coefficient is computed directly from the formula rather than through a
 
 ##  Game Development
 
-###  [Tetris Clone](./Tetris)
+###  [Tetris](./Tetris)
 * **Tech Stack:** `C++`, `Raylib`
 
 A classic Tetris implementation split into clear, separate modules instead of one large file. Grid logic, block shapes, positioning, color handling, and the main game loop each live in their own header and source files, which keeps the codebase easy to navigate and each piece testable on its own.
