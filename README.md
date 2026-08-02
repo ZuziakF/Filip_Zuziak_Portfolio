@@ -19,8 +19,9 @@ A comprehensive machine learning project focused on predicting gold market price
 
 The script tests one parameter at a time around a fixed baseline configuration, including `neuron count`, `learning rate`, `number of epochs`, `activation function`, `train/test split`, and `number of hidden layers`, to see how each one affects performance.
 
-*Console output shown below:*
-Each table corresponds to one tested parameter, with each row showing a different value tried. The network is trained five times per value, since weights start randomly, and the columns report the average and best error on both the training set and the test set. `Błąd TRAIN` reflects how well the network fits data it has already seen, while `Błąd TEST` reflects performance on unseen data, which is the more meaningful measure of real-world accuracy.
+*Console output shown below: (for the regression task)*
+
+Each table corresponds to one tested parameter, with each row showing a different value tried. The network is trained five times per value, since weights start randomly, and the columns report the average and best error on both the training set and the test set. `Błąd TRAIN` reflects how well the network fits data it has already seen, while `Błąd TEST` reflects performance on unseen data, which is the more meaningful measure of real-world accuracy. Both errors are mean squared error computed on the standardized target, meaning the price is scaled to zero mean and unit variance before the error is calculated, so the values reflect relative deviation rather than dollar amounts.
 
 > **Model Training Results (Regression Analysis):**
 > ![ML Console Output](./images/regression.png)
@@ -28,6 +29,7 @@ Each table corresponds to one tested parameter, with each row showing a differen
 Second part swaps in scikit-learn's built-in models on the same regression and classification setup, to compare against tuned, ready-made implementations. Each method has its own core parameter being tested: `number of neighbors` for **kNN**, `maximum tree depth` for **Decision Tree**, `number of trees` for **Random Forest**, and the `regularization strength C` for **SVM**.
 
 *Console output shown below:*
+
 The `Regresja MSE` column reports mean squared error for the regression task, with RMSE shown in parentheses since it's in the same units as the price and easier to interpret directly. The `Klasyfikacja` column reports classification accuracy, the percentage of correctly predicted price directions.
 
 > **Model Training Results (scikit-learn):**
