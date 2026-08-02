@@ -57,7 +57,10 @@ Once a competition takes place, admins record each athlete's result, which feeds
 ### [Exploratory Data Analysis (EDA)](<./EDA Analysis>)
 An Exploratory Data Analysis project focused on statistical data processing and insights generation.
 * **Tech Stack:** `R`, `ggplot2`
-* **Description:** Showcases the ability to handle datasets, perform complex data cleaning, and generate informative statistical plots to uncover hidden patterns and trends.
+
+An exploratory analysis of a dataset on social media addiction among students, covering habits, demographics, and wellbeing across roughly seven hundred respondents aged 16 to 25. The dataset includes variables such as `daily usage hours`, `sleep patterns`, `mental health scores`, `academic performance`, and `relationship status`, alongside an overall `addiction score`.
+
+The analysis moves from data cleaning and handling missing values into exploring how these variables relate to each other, backed by correlation matrices, chi-squared tests, and t-tests rather than just visual impressions. The strongest signal in the whole dataset turned out to be mental health, which correlated at minus 0.95 with the addiction score, meaning addiction and mental wellbeing move almost in lockstep in opposite directions. Sleep followed a similar pattern, and students involved in more conflicts over social media were consistently more likely to report it hurting their academic performance. Gender, on the other hand, showed no meaningful effect on addiction levels once tested statistically.
 
 
 ### [Lorenz Curve & Gini Coefficient Calculator](<./Lorenz Curve>)
