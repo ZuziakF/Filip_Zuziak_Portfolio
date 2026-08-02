@@ -31,6 +31,7 @@ Second part swaps in scikit-learn's built-in models on the same regression and c
 The `Regresja MSE` column reports mean squared error for the regression task, with RMSE shown in parentheses since it's in the same units as the price and easier to interpret directly. The `Klasyfikacja` column reports classification accuracy, the percentage of correctly predicted price directions.
 
 > **Model Training Results (scikit-learn):**
+> 
 > ![ML Console Output](./images/um.png)
 
 ### [Athlete Management System](<./Athlete Management System>)
