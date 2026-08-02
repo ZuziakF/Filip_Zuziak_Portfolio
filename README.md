@@ -79,9 +79,11 @@ The Gini coefficient is computed directly from the formula rather than through a
 ###  [Tetris Clone](./Tetris)
 * **Tech Stack:** `C++`, `Raylib`
 
+A classic Tetris implementation split into clear, separate modules instead of one large file. Grid logic, block shapes, positioning, color handling, and the main game loop each live in their own header and source files, which keeps the codebase easy to navigate and each piece testable on its own.
 
+The project handles the core Tetris mechanics: falling blocks, rotation, collision with the grid and other blocks, line clearing, and game state, built around a coordinate and grid system that tracks where each block currently sits on the board.
 
-
+Built following a YouTube tutorial as a way to learn modular project structure and more advanced game state management.
 
 ###  [Pong Game](<./Pong>)
 * **Tech Stack:** `C++`, `Raylib`
@@ -90,6 +92,8 @@ A classic Pong clone built to practice object-oriented structure in a real-time 
 
 Collision detection is handled per frame between the ball and both paddles, reversing the ball's direction on contact, while hitting either side wall scores a point and resets the ball to the center with a randomized direction. The game keeps score for both sides and displays it live on screen.
 
+Built following a YouTube tutorial to learn game loop structure, collision handling, and OOP patterns in C++.
+
 ### [Snake Game](<./Snake Game>)
 * **Tech Stack:** `Python`, `turtle`
 
@@ -97,3 +101,4 @@ A Snake implementation built with Python's turtle graphics library. The snake gr
 
 Hitting the screen border or colliding with its own body resets the game, sending the body segments off screen, clearing the score, and restoring the starting speed. Eating food also gradually speeds up the game by shortening the delay between frames, making it harder to control the longer the snake gets. A live scoreboard tracks both the current score and the high score across resets.
 
+Built following a YouTube tutorial to practice core game logic and event handling.
