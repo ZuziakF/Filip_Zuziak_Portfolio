@@ -1,5 +1,5 @@
 # Hi, I'm Filip Zuziak
-**Software Developer | Machine Learning | Data Analyst**
+**Developer | Data Analyst**
 
 Welcome to my portfolio! This repository showcases my diverse programming projects, demonstrating my skills across multiple technologies. My work ranges from designing software architecture and building UI to developing custom machine learning models and performing exploratory data analysis.
 
