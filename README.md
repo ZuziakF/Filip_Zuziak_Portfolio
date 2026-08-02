@@ -39,8 +39,11 @@ The `Regresja MSE` column reports mean squared error for the regression task, wi
 ### [Athlete Management System](<./Athlete Management System>)
 A multi-layered desktop application designed for managing winter sports athletes, highlighting a professional approach to software engineering and robust architecture.
 * **Tech Stack:** `C#`, `WPF`, `.NET`
-* **Architecture:** Demonstrates strong Object-Oriented Programming  principles with a strict separation of concerns, featuring dedicated layers for Data Access, Core Business Logic, and the User Interface.
-* **Interface:** Includes a console interface for core logic testing alongside a fully-fledged Graphical User Interface with user authentication and data management forms.
+A desktop application for organizations running winter sports competitions, built to handle athletes, clubs, and competition results in one place. Admins log in through a dedicated authentication system and manage everything from there.
+
+The system covers the full structure of running a competition. Admins can create competitions, register athletes, and set up clubs, then assign athletes to the clubs they belong to. Each club has its own entry requirements, including a minimum point threshold an athlete needs to join, a maximum age limit, and a cap on how many athletes it can hold. Competitions have their own settings too, with a difficulty level on a scale from one to five and a points system based on final placement.
+
+Once a competition takes place, admins record each athlete's result, which feeds back into their overall point total and determines whether they meet the requirements for higher level clubs.
 
 > **Application Interface (Main Dashboard & Login):**
 > ![Athlete System GUI](./images/gui.png)
